@@ -102,6 +102,7 @@ $(document).ready(function() {
       loveletter += "<b>Love Letter</b> ";
       loveletter += '<span class="spacing">' + num + " " + name + '</span><br/>';
       loveletter += ability;
+      loveletter += "</div></div>";
       inner += loveletter;
     }
 
