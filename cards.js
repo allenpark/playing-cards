@@ -9,10 +9,11 @@ $(document).ready(function() {
 
     var suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
     var jokers = ["J1", "J2", "J3", "J4"];
+    var nums = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Ja", "Q", "K"];
     var playingcard = '<div class="playingcard">';
     if ((i-1) % 54 < 52) {
       var cardIndex = (i-1) % 54;
-      var num = cardIndex % 13 + 1;
+      var num = nums[cardIndex % 13];
       var suit = suits[Math.floor(cardIndex / 13) % 4];
       playingcard += num + " ";
       playingcard += '<img src="img/' + suit + '.png" class="suitimg">';
@@ -29,9 +30,11 @@ $(document).ready(function() {
       var colors = ["white", "yellow", "red", "green", "blue", "rainbow"];
       var num = nums[(i-1) % 10];
       var color = colors[Math.floor((i-1) / 10)];
-      var hanabi = '<div class="hanabi inner"><div class="text">';
-      hanabi += "<b>Hanabi</b>";
-      hanabi += '<span class="spacing">' + num + " " + color + '</span>';
+      var hanabi = '<div class="hanabi inner"><div class="text">&nbsp;';
+      var card = num + " " + color;
+      hanabi += '<div class="inner" style="text-align: left; top: 0; outline: none; left: 0.1in">' + card + '</div>';
+      hanabi += '<div class="inner" style="text-align: center; top: 0;"><b style="text-align: center">Hanabi</b></div>'
+      hanabi += '<div class="inner" style="text-align: right; top: 0; outline: none; left: -0.1in">' + card + '</div>';
       hanabi += "</div></div>";
       inner += hanabi;
     }
@@ -59,9 +62,9 @@ $(document).ready(function() {
       inner += cockroachpoker;
     }
 
-    if (61 <= i && i <= 76) {
+    if (78 <= i && i <= 93) {
       var players = ["Werewolf", "Werewolf", "Villager", "Villager", "Villager", "Seer", "Robber", "Insomniac", "Troublemaker", "Minion", "Doppelg&auml;nger", "Mason", "Mason", "Drunk", "Tanner", "Hunter"];
-      var player = players[i - 61];
+      var player = players[i - 78];
       var onenight = '<div class="onenight inner"><div class="text">';
       onenight += "<b>One Night</b>";
       onenight += '<span class="spacing">' + player + "</span>";
@@ -104,6 +107,20 @@ $(document).ready(function() {
       loveletter += ability;
       loveletter += "</div></div>";
       inner += loveletter;
+    }
+
+    if (1 <= i && i <= 49) {
+      var colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"];
+      var rules = ["Highest card", "Most of one number", "Most of one color", "Most even cards", "Most different colors", "Most cards in a row", "Most cards below 4"];
+      var num = 7 - (i-1) % 7;
+      var colorIndex = Math.floor((i-1) / 7);
+      var color = colors[colorIndex];
+      var rule = rules[colorIndex];
+      var red7 = '<div class="red7 inner"><div class="text">';
+      red7 += "<b>Red7</b> ";
+      red7 += color + num + " " + rule;
+      red7 += "</div></div>";
+      inner += red7;
     }
 
     var games = [];
